@@ -4,13 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'cocoapods-lockfile/version.rb'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'cocoapods-lockfile'
+  spec.name          = CocoapodsLockfile::NAME
   spec.version       = CocoapodsLockfile::VERSION
   spec.authors       = ['Israel Soto']
   spec.email         = ['israel.spgh@gmail.com']
-  spec.description   = %q{A short description of cocoapods-lockfile.}
-  spec.summary       = %q{A longer description of cocoapods-lockfile.}
-  spec.homepage      = 'https://github.com/EXAMPLE/cocoapods-lockfile'
+  spec.summary       = %q{A Cocoapods plugin that generates the Podfile.lock file without the need to download the Pods files.}
+  spec.homepage      = 'https://github.com/SotoiGhost/cocoapods-lockfile'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)
@@ -18,6 +17,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
+  spec.add_runtime_dependency 'cocoapods', '~> 1.0'
+
   spec.add_development_dependency 'bundler', '~> 1.3'
   spec.add_development_dependency 'rake'
+  spec.add_development_dependency "rspec", "~> 3.0"
 end
