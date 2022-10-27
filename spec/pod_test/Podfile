@@ -1,0 +1,7 @@
+install! 'cocoapods', :integrate_targets => false
+use_frameworks!
+
+target 'XamarinGoogle_iOS' do
+	platform :ios, '12.0'
+	pod 'FBSDKCoreKit', '15.0.0'
+end

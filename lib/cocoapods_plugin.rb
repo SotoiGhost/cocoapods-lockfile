@@ -9,7 +9,7 @@ module Pod
 
         def install!
             if generate_lockfile_only?
-                UI.section "Skipping Download Dependencies"
+                UI.section "Skipping the download of the dependencies due to --lockfile-only was passed".yellow
                 prepare
                 resolve_dependencies
                 write_lockfiles
