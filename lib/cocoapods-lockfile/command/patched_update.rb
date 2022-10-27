@@ -17,27 +17,26 @@ module Pod
     # @todo Create a PR to add your plugin to CocoaPods/cocoapods.org
     #       in the `plugins.json` file, once your plugin is released.
     #
-    class Lockfile < Command
-      self.summary = 'Short description of cocoapods-lockfile.'
+    class Update < Command
+      self.singleton_class.send(:alias_method, :original_options, :options)
+      alias_method :original_initialize, :initialize
+      alias_method :original_installer_for_config, :installer_for_config
 
-      self.description = <<-DESC
-        Longer description of cocoapods-lockfile.
-      DESC
-
-      self.arguments = 'NAME'
+      def self.options
+        [
+          ["--lockfile-only", "Avoids the download of the pods and generates the Podfile.lock."]
+        ].concat(self.original_options)
+      end
 
       def initialize(argv)
-        @name = argv.shift_argument
-        super
+        original_initialize(argv)
+        @generate_lockfile_only = argv.flag?('lockfile-only', false)
       end
-
-      def validate!
-        super
-        help! 'A Pod name is required.' unless @name
-      end
-
-      def run
-        UI.puts "Add your implementation for the cocoapods-lockfile plugin in #{__FILE__}"
+      
+      def installer_for_config
+        installer = original_installer_for_config
+        installer.generate_lockfile_only = @generate_lockfile_only
+        installer
       end
     end
   end
