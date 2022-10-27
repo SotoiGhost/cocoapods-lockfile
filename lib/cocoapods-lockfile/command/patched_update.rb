@@ -1,3 +1,5 @@
+require "cocoapods-lockfile/version"
+
 module Pod
   class Command
     # This is an example of a cocoapods plugin adding a top-level subcommand
@@ -24,13 +26,13 @@ module Pod
 
       def self.options
         [
-          ["--lockfile-only", "Avoids the download of the pods and generates the Podfile.lock."]
+          ["--#{CocoapodsLockfile::FLAG_NAME}", "#{CocoapodsLockfile::FLAG_DESCRIPTION}"]
         ].concat(self.original_options)
       end
 
       def initialize(argv)
         original_initialize(argv)
-        @generate_lockfile_only = argv.flag?('lockfile-only', false)
+        @generate_lockfile_only = argv.flag?("#{CocoapodsLockfile::FLAG_NAME}", false)
       end
       
       def installer_for_config

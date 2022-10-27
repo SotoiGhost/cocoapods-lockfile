@@ -1,7 +1,8 @@
 PATH
   remote: .
   specs:
-    cocoapods-lockfile (0.0.1)
+    cocoapods-lockfile (0.1.0)
+      cocoapods (~> 1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -110,7 +111,7 @@ DEPENDENCIES
   mocha
   mocha-on-bacon
   prettybacon
-  rake
+  rake (~> 13.0)
 
 BUNDLED WITH
    1.17.2

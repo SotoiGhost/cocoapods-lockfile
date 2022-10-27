@@ -1,4 +1,5 @@
 require File.expand_path('../../spec_helper', __FILE__)
+require 'cocoapods-lockfile/version.rb'
 
 module Pod
   SPEC_PATH = "spec/pod_test"
@@ -10,13 +11,13 @@ module Pod
       end
     end
 
-    describe "Test --lockfile-only flag" do
+    describe "Test --#{CocoapodsLockfile::FLAG_NAME} flag" do
 
       before do
         require "fileutils"
         FileUtils.rm_f("#{SPEC_PATH}/Podfile.lock")
         FileUtils.rm_rf("#{SPEC_PATH}/Pods")
-        @install_command = Command.parse(%W{ install --project-directory=#{SPEC_PATH} --lockfile-only })
+        @install_command = Command.parse(%W{ install --project-directory=#{SPEC_PATH} --#{CocoapodsLockfile::FLAG_NAME} })
       end
 
       it "verifies that the flag is enabled" do
@@ -37,13 +38,13 @@ module Pod
       end
     end
 
-    describe "Test --lockfile-only flag" do
+    describe "Test --#{CocoapodsLockfile::FLAG_NAME} flag" do
 
       before do
         require "fileutils"
         FileUtils.rm_f("#{SPEC_PATH}/Podfile.lock")
         FileUtils.rm_rf("#{SPEC_PATH}/Pods")
-        @update_command = Command.parse(%W{ update --project-directory=#{SPEC_PATH} --lockfile-only --no-repo-update })
+        @update_command = Command.parse(%W{ update --project-directory=#{SPEC_PATH} --#{CocoapodsLockfile::FLAG_NAME} --no-repo-update })
       end
 
       it "verifies that the flag is enabled" do
