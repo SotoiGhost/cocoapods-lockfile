@@ -1,6 +1,6 @@
 # cocoapods-lockfile
 
-A description of cocoapods-lockfile.
+The cocoapods-lockfile is a Cocoapods plugin that works with the `install` and `update` commands to generate the **Podfile.lock** file without the need to download the Pods files.
 
 ## Installation
 
@@ -8,4 +8,8 @@ A description of cocoapods-lockfile.
 
 ## Usage
 
-    $ pod spec lockfile POD_NAME
+```sh
+$ pod install --lockfile-only
+# or
+$ pod update --lockfile-only
+```
